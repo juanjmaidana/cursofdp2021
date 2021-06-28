@@ -10,28 +10,30 @@ while(True):
   print("Temperatura Objetivo: ",tempObjetivo)
     
   #ingreso de te temperatura de prueba
-  tempPrueba = int(input("Ingrese Temperatura: "))
+  tempPrueba = int(input("Ingrese Temperatura de Prueba: "))
   if(tempPrueba == 0): 
     print("Programa Finalizado") 
     break
-
-
-  for i in range(10):
-    lectura = random.randint(tempObjetivo - 2,tempObjetivo + 2)
-    totalLectura = totalLectura + lectura
-
-  promLectura = totalLectura / 10
   
-  print()
-  print("Promedio de Lecturas: ",int(promLectura))
+  if (tempPrueba >= 100 and tempPrueba <= 200):
+    print("Temperatura de Prueba: ",tempPrueba)
+  
+    for i in range(10):
+     lectura = random.randint(tempObjetivo - 2,tempObjetivo + 2)
+     totalLectura = totalLectura + lectura
+     promLectura = totalLectura / 10
+  
+    print()
+    print("Promedio de Lecturas: ",int(promLectura))
 
-  if (promLectura < tempObjetivo):
-    print("Temperatura baja, se enciende quemador")
-  elif (promLectura > tempObjetivo):
-    print("Temperatura alta, se apaga quemador")
+    if (promLectura < tempObjetivo):
+      print("Temperatura baja, se enciende quemador")
+      print("*******************************************************")
+    elif (promLectura > tempObjetivo):
+      print("Temperatura alta, se apaga quemador")
+      print("*******************************************************")
+
   else:
-    print("Temperatura Estable")
-
-  print()
-  print("**************************************************")
+    print("Fuera de Rango")
+    print()
   
