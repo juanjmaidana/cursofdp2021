@@ -2,20 +2,19 @@ import random
 
 while(True):
   
-  tempObjetivo = 0
   totalLectura = 0
   promLectura = 0
 
-  tempObjetivo = random.randint(100,200)
+  #temperatura de objetivo al azar
+  tempObjetivo = random.randint(100,200 + 1)
   print("Temperatura Objetivo: ",tempObjetivo)
-  tempPrueba = 1
-  
-  while(tempPrueba <= 100 or tempPrueba >= 200) and tempPrueba != 0:
-    tempPrueba = int(input("Ingrese Temperatura: "))
-     
+    
+  #ingreso de te temperatura de prueba
+  tempPrueba = int(input("Ingrese Temperatura: "))
   if(tempPrueba == 0): 
     print("Programa Finalizado") 
     break
+
 
   for i in range(10):
     lectura = random.randint(tempObjetivo - 2,tempObjetivo + 2)
