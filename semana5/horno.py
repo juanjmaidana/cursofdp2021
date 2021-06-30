@@ -16,14 +16,14 @@ while(True):
     break
   
   if (tempPrueba >= 100 and tempPrueba <= 200):
-    print("Temperatura de Prueba: ",tempPrueba)
+    #print("Temperatura de Prueba: ",tempPrueba)
   
     for i in range(10):
      lectura = random.randint(tempObjetivo - 2,tempObjetivo + 2)
      totalLectura = totalLectura + lectura
      promLectura = totalLectura / 10
   
-    print()
+    print("****************************************************")
     print("Promedio de Lecturas: ",int(promLectura))
 
     if (promLectura < tempObjetivo):
