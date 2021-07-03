@@ -28,9 +28,11 @@ while(True):
 
     if (promLectura < tempObjetivo):
       print("Temperatura baja, se enciende quemador")
+      print("")
       print("*******************************************************")
     elif (promLectura > tempObjetivo):
       print("Temperatura alta, se apaga quemador")
+      print("")
       print("*******************************************************")
 
   else:
