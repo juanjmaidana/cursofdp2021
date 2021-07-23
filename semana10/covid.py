@@ -5,35 +5,40 @@ import requests
 UrlCovidApi="http://api.covid19api.com/summary"
 
 #funciones
-def recuperarUrl(destino):
+def recuperarUrl(destino,formato):
     consulta = requests.get(destino)
 
-    if(consulta):
-        if(consulta.status_code==200):
-            return consulta.json()
+    if (consulta):
+        if (consulta.status_code == 200):
+            if (formato == "original"):
+                return consulta.content
+            elif (formato == "texto"):
+                return consulta.text
+            elif (formato == "json"):
+                return consulta.json()
+            else:
+                return False
+        elif (consulta.status_code == 429):
+            print ("Demasiadas solicitudes por minuto")
+            return False
+        else:
+            print(f"ERROR al recuperar contenidos: {consulta.message}")
+            return False
+    else:
+        print("ERRROR general en la solicitud")
 
-def buscarPais(consulta):
+def buscarPais(consulta,origenDatos):
     i=-1
-    for f in datosCovid['Countries']:
+    for f in origenDatos['Countries']:
         i=i+1
-        pais=f"{datosCovid['Countries'][i]['Country']}"
-        TotalConfirmados=f"{datosCovid['Countries'][i]['TotalConfirmed']}"
-        TotalMuertos=f"{datosCovid['Countries'][i]['TotalDeaths']}"
+        pais=f"{origenDatos['Countries'][i]['Country']}"
+
+        TotalConfirmados=f"{origenDatos['Countries'][i]['TotalConfirmed']}"
+        TotalRecuperados=f"{origenDatos['Countries'][i]['TotalRecovered']}"
+        TotalMuertos=f"{origenDatos['Countries'][i]['TotalDeaths']}"
 
         if pais==consulta :
-            print("COVID19")
-            print("-----------------------------")
-            print(pais)
-            print("-----------------------------")
-            print("Total Confirmados: ",TotalConfirmados)
-            print("Total Muertos: ",TotalMuertos)
-            print("-----------------------------")
-
-
-   
-
-
-datosCovid = recuperarUrl(UrlCovidApi)
-
-pais=input("Ingrese nombre del pais: ")
-buscarPais(pais)
+            consultaDic={}
+            consultaDic = {'pais':pais,'TotalConfirmados':TotalConfirmados,'TotalRecuperados':TotalRecuperados,'TotalMuertos':TotalMuertos}
+            return consultaDic
+            
