@@ -8,6 +8,12 @@ def main():
 
     consulta = buscarPais("Argentina",datos)
 
+    fecha=f"{datos['Date']}"
+   
+    fechaAct=convertirFecha(str(fecha))
+
+    print(fechaAct)
+
     print(consulta)
 
 if (__name__ == "__main__"):

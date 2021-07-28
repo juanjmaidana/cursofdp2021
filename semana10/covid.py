@@ -1,5 +1,6 @@
 #Librerias
 import requests
+import time
 
 #funciones
 def recuperarUrl(destino,formato):
@@ -37,10 +38,15 @@ def buscarPais(consulta,origenDatos):
         NuevosRecuperados=f"{origenDatos['Countries'][i]['NewRecovered']}"
         TotalRecuperados=f"{origenDatos['Countries'][i]['TotalRecovered']}"
         
-
-
         if pais==consulta :
             consultaDic={}
             consultaDic = {'pais':pais,'NuevosConfirmados':NuevosConfirmados,'TotalConfirmados':TotalConfirmados,'NuevasMuertes':NuevasMuertes,'TotalMuertes':TotalMuertes,'NuevosRecuperados':NuevosRecuperados,'TotalRecuperados':TotalRecuperados}
             return consultaDic
-            
+
+def convertirFecha(cadenaFecha):
+    #cadenaFecha = #"2021-06-28T10:22:00.82Z"
+    formato = "%Y-%m-%dT%H:%M:%S.82Z"
+    fecha = time.strptime(cadenaFecha, formato)
+    fechaConvertida = f"La cadena original {cadenaFecha}, se parsea como {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
+
+    return fechaConvertida
