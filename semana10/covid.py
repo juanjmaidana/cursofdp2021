@@ -1,9 +1,6 @@
 #Librerias
 import requests
 
-#RUTAS
-UrlCovidApi="http://api.covid19api.com/summary"
-
 #funciones
 def recuperarUrl(destino,formato):
     consulta = requests.get(destino)
@@ -33,12 +30,17 @@ def buscarPais(consulta,origenDatos):
         i=i+1
         pais=f"{origenDatos['Countries'][i]['Country']}"
 
+        NuevosConfirmados=f"{origenDatos['Countries'][i]['NewConfirmed']}"
         TotalConfirmados=f"{origenDatos['Countries'][i]['TotalConfirmed']}"
+        NuevasMuertes=f"{origenDatos['Countries'][i]['NewDeaths']}"
+        TotalMuertes=f"{origenDatos['Countries'][i]['TotalDeaths']}"
+        NuevosRecuperados=f"{origenDatos['Countries'][i]['NewRecovered']}"
         TotalRecuperados=f"{origenDatos['Countries'][i]['TotalRecovered']}"
-        TotalMuertos=f"{origenDatos['Countries'][i]['TotalDeaths']}"
+        
+
 
         if pais==consulta :
             consultaDic={}
-            consultaDic = {'pais':pais,'TotalConfirmados':TotalConfirmados,'TotalRecuperados':TotalRecuperados,'TotalMuertos':TotalMuertos}
+            consultaDic = {'pais':pais,'NuevosConfirmados':NuevosConfirmados,'TotalConfirmados':TotalConfirmados,'NuevasMuertes':NuevasMuertes,'TotalMuertes':TotalMuertes,'NuevosRecuperados':NuevosRecuperados,'TotalRecuperados':TotalRecuperados}
             return consultaDic
             
