@@ -10,7 +10,7 @@ def main():
 
     fecha=f"{datos['Date']}"
    
-    fechaAct=convertirFecha(str(fecha))
+    fechaAct=convertirFecha(fecha)
 
     print(fechaAct)
 

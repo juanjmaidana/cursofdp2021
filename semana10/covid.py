@@ -44,9 +44,9 @@ def buscarPais(consulta,origenDatos):
             return consultaDic
 
 def convertirFecha(cadenaFecha):
-    #cadenaFecha = #"2021-06-28T10:22:00.82Z"
-    formato = "%Y-%m-%dT%H:%M:%S.82Z"
+    
+    formato = "%Y-%m-%dT%H:%M:%S.847Z"
     fecha = time.strptime(cadenaFecha, formato)
-    fechaConvertida = f"La cadena original {cadenaFecha}, se parsea como {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
+    fechaConvertida = f"La fecha de actualización es:  {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
 
     return fechaConvertida
