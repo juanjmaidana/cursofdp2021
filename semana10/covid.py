@@ -1,6 +1,7 @@
 #Librerias
 import requests
 import time
+import json
 
 #funciones
 def recuperarUrl(destino,formato):
@@ -45,8 +46,14 @@ def buscarPais(consulta,origenDatos):
 
 def convertirFecha(cadenaFecha):
     
-    formato = "%Y-%m-%dT%H:%M:%S.847Z"
+    formato = "%Y-%m-%dT%H:%M:%S.%%"
     fecha = time.strptime(cadenaFecha, formato)
-    fechaConvertida = f"La fecha de actualización es:  {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
+    fechaConvertida = f"Fecha de actualización:  {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
 
     return fechaConvertida
+
+def escribirJSON(file):
+    
+   with open('semana10\covid_arg.json', 'w') as outfile:
+       json.dump(file, outfile)
+

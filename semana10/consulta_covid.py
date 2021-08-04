@@ -12,6 +12,11 @@ def main():
    
     fechaAct=convertirFecha(fecha)
 
+    escribirJSON(consulta)
+
+    print("DATOS COVID ARGENTINA")
+    print("-----------------------------------")
+    print(f"Nuevos Confirmado {consulta['NuevosConfirmados']}")
     print(fechaAct)
 
     print(consulta)
