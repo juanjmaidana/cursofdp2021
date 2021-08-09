@@ -46,7 +46,7 @@ def buscarPais(consulta,origenDatos):
 
 def convertirFecha(cadenaFecha):
     
-    formato = "%Y-%m-%dT%H:%M:%S.%%"
+    formato = "%Y-%m-%dT%H:%M:%S.116Z"
     fecha = time.strptime(cadenaFecha, formato)
     fechaConvertida = f"Fecha de actualización:  {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
 
