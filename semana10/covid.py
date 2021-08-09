@@ -46,8 +46,8 @@ def buscarPais(consulta,origenDatos):
 
 def convertirFecha(cadenaFecha):
     
-    formato = "%Y-%m-%dT%H:%M:%S.116Z"
-    fecha = time.strptime(cadenaFecha, formato)
+    formato = "%Y-%m-%dT%H:%M:%S"
+    fecha = time.strptime(cadenaFecha[0:19], formato)
     fechaConvertida = f"Fecha de actualización:  {fecha.tm_mday}/{fecha.tm_mon}/{fecha.tm_year} a las {fecha.tm_hour}:{fecha.tm_min}"
 
     return fechaConvertida
@@ -56,4 +56,18 @@ def escribirJSON(file):
     
    with open('semana10\covid_arg.json', 'w') as outfile:
        json.dump(file, outfile)
+
+def imprimirPantalla(consulta,fechaAct):
+        print("-------------------------------------------------------")
+        print("DATOS COVID ARGENTINA")
+        print("-------------------------------------------------------")
+        print(f"Nuevos Confirmado: {consulta['NuevosConfirmados']}")
+        print(f"Total de Confirmado: {consulta['TotalConfirmados']}")
+        print(f"Nuevas Muertes: {consulta['NuevasMuertes']}")
+        print(f"Total de Muertes: {consulta['TotalMuertes']}")
+        print(f"Nuevos Recuperados: {consulta['NuevosRecuperados']}")
+        print(f"Total de Recuperados: {consulta['TotalRecuperados']}")
+        print("-------------------------------------------------------")
+        print(fechaAct)
+        print("-------------------------------------------------------")
 
