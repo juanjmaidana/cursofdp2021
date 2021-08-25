@@ -1,6 +1,9 @@
 import requests as req
 import os
+from tkinter import messagebox
 from tkinter import *
+
+
 
 SERVIDOR = "http://pad19.com:3030"
 ENDPOINT_PRODUCTOS = "productos/10"
@@ -20,33 +23,60 @@ def consulta():
 
 productos = consulta()
 
-#print(productos['productos'][0]['nombre'])
+
+
+
+# print(productos['productos'][0]['nombre'])
+# print(f"{SERVIDOR}/{ENDPOINT_PRODUCTOS}?token={TOKEN}")
+
 
 ventana = Tk()
-ventana.geometry("300x200")
-ventana.title("Formulario Simple")
-miFrame= Frame()
-miFrame.pack()
-bienvenido = Label(miFrame, text="BIENVENIDO")
-bienvenido.grid(row=0, column=0)
-bienvenido.config(font=('Arial', 16))
-#-----Seccion de Nombre-----
-nombre_label= Label(miFrame, text="Cual es tu nombre:")
-nombre_label.grid(row=1, column=0)
-nombre_label.config(padx=10, pady=10)
-cuadro_nombre=Entry(miFrame)
-cuadro_nombre.grid(row=1, column=1)
-#-----Seccion de Apellido-----
-apellido_label=Label(miFrame, text="Cual es tu apellido: ")
+ventana.geometry("800x200")
+ventana.title("Formulario Pedido")
+miFrame= Frame(ventana)
+miFrame.pack(fill="both")
+texto1 = Label(miFrame, text="Ingrese Pedido")
+texto1.grid(row=0, column=0)
+texto1.config(font=('Arial', 12))
+
+#-----Seccion de ID-----
+id_label= Label(miFrame, text="ID:")
+id_label.grid(row=1, column=0)
+id_label.config(padx=10, pady=10)
+cuadro_id=Entry(miFrame)
+
+cuadro_id.grid(row=1, column=1)
+
+#-----Seccion de Producto-----
+apellido_label=Label(miFrame, text="Producto: ")
 apellido_label.grid(row=2, column=0)
+apellido_label.config(padx=10, pady=50)
+cuadro_Producto= Entry(miFrame)
+cuadro_Producto.grid(row=2, column=1)
+
+#-----Seccion de Precio-----
+apellido_label=Label(miFrame, text="Precio: ")
+apellido_label.grid(row=3, column=0)
 apellido_label.config(padx=10, pady=10)
-cuadro_Apellido=Entry(miFrame)
-cuadro_Apellido.grid(row=2, column=1)
-#-----Seccion de Dirección-----
-direccion=Label(miFrame, text="Dirección: ")
-direccion.grid(row=3, column=0)
-direccion.config(padx=10, pady=10)
-cuadro_Direccion=Entry(miFrame)
-cuadro_Direccion.grid(row=3, column=1)
+cuadro_Precio= Entry(miFrame)
+cuadro_Precio.grid(row=3, column=1)
+
+
+#-----Boton Enviar------
+def enviar():
+    #messagebox.showinfo(message="¡Hola, mundo!", title="Saludo")
+    id = int(cuadro_id.get())
+    name_prod = f"{productos['productos'][id]['nombre']}"
+    name_prec = f"{productos['productos'][id]['precio']}"
+    cuadro_Producto.delete(0,END)
+    cuadro_Precio.delete(0,END)
+    cuadro_Producto.insert(0,name_prod)
+    cuadro_Precio.insert(0,name_prec)
+   
+
+
+btn1 = Button(miFrame, text="Enviar", command=enviar)
+btn1.grid(column=0,row=10)
+
 
 ventana.mainloop()
