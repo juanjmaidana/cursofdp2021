@@ -44,13 +44,12 @@ id_label= Label(miFrame, text="ID:")
 id_label.grid(row=1, column=0)
 id_label.config(padx=10, pady=10)
 cuadro_id=Entry(miFrame)
-
 cuadro_id.grid(row=1, column=1)
 
 #-----Seccion de Producto-----
 apellido_label=Label(miFrame, text="Producto: ")
 apellido_label.grid(row=2, column=0)
-apellido_label.config(padx=10, pady=50)
+apellido_label.config(padx=10, pady=10)
 cuadro_Producto= Entry(miFrame)
 cuadro_Producto.grid(row=2, column=1)
 
