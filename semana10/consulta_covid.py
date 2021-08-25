@@ -16,6 +16,8 @@ def main():
 
     imprimirPantalla(consulta,fechaAct)
 
+    porcentaje(datos,consulta)
+
 
 if (__name__ == "__main__"):
 	main()

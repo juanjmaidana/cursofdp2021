@@ -57,9 +57,29 @@ def escribirJSON(file):
    with open('semana10\covid_arg.json', 'w') as outfile:
        json.dump(file, outfile)
 
+def porcentaje(datos,consultaPais):
+    GlobalConfirmados = int(datos['Global']['TotalConfirmed'])
+    GlobalRecuperados = int(datos['Global']['TotalRecovered'])
+    ArgConfirmados = int(consultaPais['TotalConfirmados'])
+    ArgRecuperados = int(consultaPais['TotalRecuperados'])
+
+    if (GlobalConfirmados != 0) and (ArgConfirmados !=0) :
+        porConfirmados = (ArgConfirmados * 100)/GlobalConfirmados
+        print(f"El {porConfirmados:.2f}% del total de confirmados pertenece a la {consultaPais['pais']}")
+    else:
+        print("Sin datos")
+    
+    if (GlobalRecuperados != 0) and (ArgRecuperados !=0) :
+        porRecuperados = (ArgRecuperados * 100)/GlobalRecuperados
+        print(f"El {porRecuperados:.2f}% del total de recuperados pertenece a la {consultaPais['pais']}")
+    else:
+        print("Sin datos")
+    
+
+
 def imprimirPantalla(consulta,fechaAct):
         print("-------------------------------------------------------")
-        print("DATOS COVID ARGENTINA")
+        print(f"DATOS COVID {consulta['pais']}")
         print("-------------------------------------------------------")
         print(f"Nuevos Confirmado: {consulta['NuevosConfirmados']}")
         print(f"Total de Confirmado: {consulta['TotalConfirmados']}")
