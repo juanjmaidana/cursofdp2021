@@ -89,16 +89,16 @@ def gui_pricipal(productos):
             telegramURL = f"{URL_TELEGRAM}{TOKEN_TELEGRAM}/{ENDPOINT_TELEGRAM}"
             telgramSend = req.post(telegramURL,data={'chat_id':ID_CHAT,'text': mensajePedido})
             messagebox.showinfo(message=mensajePedido, title="Pedido Registrado")
-            messagebox.showinfo(message=telgramSend.status_code, title="Telegram")
+            messagebox.showinfo(message=telgramSend.text, title="Telegram")
 
 
     #-----Boton Cargar------
     btn1 = Button(miFrame, text="Cargar", command=cargar)
-    btn1.place(x=160,y=30)
+    btn1.place(x=170,y=30)
 
     #-----Boton Agregar al Pedido------
     btn2 = Button(miFrame, text="Agregar al Pedido", command=agregar)
-    btn2.place(x=180,y=188)
+    btn2.place(x=250,y=184)
 
 
 
