@@ -1,17 +1,20 @@
 import requests as req
 from tkinter import *
 from tkinter import messagebox
-#import os from dotenv import load_dotenv
+import os 
+from dotenv import load_dotenv
+load_dotenv()
 
-SERVIDOR = "http://pad19.com:3030"
-ENDPOINT_PRODUCTOS = "productos/10"
-ENDPOINT_PEDIDOS = "pedidos/10"
-ENDPOINT_CONSULTA_PEDIDOS = "pedidos/"
-TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgiLCJub21icmUiOiJKdWFuIE1haWRhbmEifQ.Iv6XfvzwAGlo1mw-LoWC3l5bKeW4itVfhy8GMxPTwCE"
-URL_TELEGRAM = "https://api.telegram.org/bot"
-TOKEN_TELEGRAM = "1943297231:AAGSMdz6yKqvzrNSgo8IVhq9vvBqIzvbzrE"
+SERVIDOR = os.getenv("SERVIDOR")
+ENDPOINT_PRODUCTOS = os.getenv("ENDPOINT_PRODUCTOS")
+ENDPOINT_PEDIDOS = os.getenv("ENDPOINT_PEDIDOS")
+ENDPOINT_CONSULTA_PEDIDOS = os.getenv("ENDPOINT_CONSULTA_PEDIDOS")
+TOKEN = os.getenv("TOKEN")
+
+URL_TELEGRAM = os.getenv("URL_TELEGRAM")
+TOKEN_TELEGRAM = os.getenv("TOKEN_TELEGRAM")
 ENDPOINT_TELEGRAM = "sendMessage"
-ID_CHAT = "1633210210"#"-559723042"
+ID_CHAT = os.getenv("ID_CHAT")
 
 
 def consulta():
