@@ -1,16 +1,17 @@
 import requests as req
 from tkinter import *
 from tkinter import messagebox
+#import os from dotenv import load_dotenv
 
 SERVIDOR = "http://pad19.com:3030"
 ENDPOINT_PRODUCTOS = "productos/10"
 ENDPOINT_PEDIDOS = "pedidos/10"
 ENDPOINT_CONSULTA_PEDIDOS = "pedidos/"
 TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgiLCJub21icmUiOiJKdWFuIE1haWRhbmEifQ.Iv6XfvzwAGlo1mw-LoWC3l5bKeW4itVfhy8GMxPTwCE"
-URL_TELEGRAM = ""
-TOKEN_TELEGRAM = ""
+URL_TELEGRAM = "https://api.telegram.org/bot"
+TOKEN_TELEGRAM = "1943297231:AAGSMdz6yKqvzrNSgo8IVhq9vvBqIzvbzrE"
 ENDPOINT_TELEGRAM = "sendMessage"
-ID_CHAT = ""
+ID_CHAT = "1633210210"#"-559723042"
 
 
 def consulta():
@@ -82,7 +83,10 @@ def gui_pricipal(productos):
             pedidoPost = req.post(URL_PEDIDO,pedido)
             ordenPedido = pedidoPost.json()
             mensajePedido = f"{ordenPedido['mensaje']} con el número de orden: {ordenPedido['codigo']}"
+            telegramURL = f"{URL_TELEGRAM}{TOKEN_TELEGRAM}/{ENDPOINT_TELEGRAM}"
+            telgramSend = req.post(telegramURL,data={'chat_id':ID_CHAT,'text': mensajePedido})
             messagebox.showinfo(message=mensajePedido, title="Pedido Registrado")
+            messagebox.showinfo(message=telgramSend.status_code, title="Telegram")
 
 
     #-----Boton Cargar------
