@@ -1,5 +1,6 @@
 import requests as req
 from tkinter import *
+from tkinter import messagebox
 
 SERVIDOR = "http://pad19.com:3030"
 ENDPOINT_PRODUCTOS = "productos/10"
@@ -25,7 +26,7 @@ def gui_pricipal(productos):
     ventana.title("Formulario Pedido")
     miFrame= Frame(ventana)
     miFrame.pack(fill="both")
-    texto1 = Label(miFrame, text="Ingrese Pedido")
+    texto1 = Label(miFrame, text="Pedido")
     texto1.grid(row=0, column=0)
     texto1.config(font=('Arial', 12))
 
@@ -69,12 +70,27 @@ def gui_pricipal(productos):
         precio_label.config(text=name_prec)
         stock_label.config(text=name_stock)
 
+    def agregar():
+        id = int(cuadro_id.get())
+        cant = int(cuadro_pedido.get())
+        stock = productos['productos'][id]['stock']
+        pedido = {"id":id,"pedido":cant}
+        if (cant > stock):
+             messagebox.showinfo(message="STOCK INSUFICIENTE", title="ERROR")
+        else:
+            URL_PEDIDO = f"{SERVIDOR}/{ENDPOINT_PEDIDOS}?token={TOKEN}"
+            pedidoPost = req.post(URL_PEDIDO,pedido)
+            ordenPedido = pedidoPost.json()
+            mensajePedido = f"{ordenPedido['mensaje']} con el número de orden: {ordenPedido['codigo']}"
+            messagebox.showinfo(message=mensajePedido, title="Pedido Registrado")
+
+
     #-----Boton Cargar------
     btn1 = Button(miFrame, text="Cargar", command=cargar)
     btn1.place(x=160,y=30)
 
     #-----Boton Agregar al Pedido------
-    btn2 = Button(miFrame, text="Agregar al Pedido", command=cargar)
+    btn2 = Button(miFrame, text="Agregar al Pedido", command=agregar)
     btn2.place(x=180,y=188)
 
 
